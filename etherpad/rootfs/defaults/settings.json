@@ -229,7 +229,7 @@
   /*
    * When you use NGINX or another proxy/load-balancer set this to true.
    */
-  "trustProxy" : false,
+  "trustProxy" : true,
 
   /*
    * Privacy: disable IP logging
