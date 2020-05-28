@@ -42,6 +42,8 @@ services:
             meet.jitsi:
                 aliases:
                     - ${XMPP_DOMAIN}
+        healthcheck:
+            test: "exit 0"
 
     # XMPP server
     prosody:
@@ -107,6 +109,8 @@ services:
             meet.jitsi:
                 aliases:
                     - ${XMPP_SERVER}
+        healthcheck:
+            test: "exit 0"
 
     # Focus component
     jicofo:
@@ -135,6 +139,8 @@ services:
             - prosody
         networks:
             meet.jitsi:
+        healthcheck:
+            test: "exit 0"
 
     # Video bridge
     jvb:
@@ -163,6 +169,8 @@ services:
             - prosody
         networks:
             meet.jitsi:
+        healthcheck:
+            test: "exit 0"
 
 # Custom network so all services can communicate using a FQDN
 networks:
