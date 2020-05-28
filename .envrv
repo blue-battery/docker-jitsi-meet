@@ -31,7 +31,7 @@ JIBRI_XMPP_PASSWORD=6fff46753c7879881b64d6dfe3a1f04a
 #
 
 # Directory where all configuration will be stored
-CONFIG=~/.jitsi-meet-cfg
+CONFIG=./.jitsi-meet-cfg
 
 # Exposed HTTP port
 HTTP_PORT=80
