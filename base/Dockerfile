@@ -27,7 +27,7 @@ RUN \
 RUN \
 	[ "$JITSI_RELEASE" = "unstable" ] && \
 	apt-dpkg-wrap apt-get update && \
-	apt-dpkg-wrap apt-get install -y jq procps curl vim iputils-ping net-tools && \
+	apt-dpkg-wrap apt-get install -y jq procps curl vim iputils-ping net-tools git && \
 	apt-cleanup || \
 	true
 
