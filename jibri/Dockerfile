@@ -6,12 +6,12 @@ FROM ${JITSI_REPO}/base-java
 ARG CHROME_RELEASE=78.0.3904.97
 ARG CHROMEDRIVER_MAJOR_RELEASE=78
 
-RUN \
+RUN set -x && \
 	apt-dpkg-wrap apt-get update \
 	&& apt-dpkg-wrap apt-get install -y jibri libgl1-mesa-dri \
 	&& apt-cleanup
 
-RUN \
+RUN set -x && \
 	[ "${CHROME_RELEASE}" = "latest" ] \
 	&& curl -4s https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
 	&& echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
@@ -20,7 +20,7 @@ RUN \
 	&& apt-cleanup \
 	|| true
 
-RUN \
+RUN set -x && \
         [ "${CHROME_RELEASE}" != "latest" ] \
         && curl -4so /tmp/google-chrome-stable_${CHROME_RELEASE}-1_amd64.deb http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_RELEASE}-1_amd64.deb \
 	&& apt-dpkg-wrap apt-get update \
@@ -28,7 +28,7 @@ RUN \
 	&& apt-cleanup \
 	|| true
 
-RUN \
+RUN set -x && \
 	[ "${CHROMEDRIVER_MAJOR_RELEASE}" = "latest" ] \
 	&& CHROMEDRIVER_RELEASE="$(curl -4Ls https://chromedriver.storage.googleapis.com/LATEST_RELEASE)" \
 	|| CHROMEDRIVER_RELEASE="$(curl -4Ls https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROMEDRIVER_MAJOR_RELEASE})" \
@@ -37,7 +37,7 @@ RUN \
 	&& chmod +x /usr/bin/chromedriver \
 	&& chromedriver --version
 
-RUN \
+RUN set -x && \
         apt-dpkg-wrap apt-get update \
         && apt-dpkg-wrap apt-get install -y jitsi-upload-integrations jq \
         && apt-cleanup

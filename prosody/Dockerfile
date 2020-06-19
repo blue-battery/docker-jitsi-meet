@@ -2,7 +2,7 @@ ARG JITSI_REPO=jitsi
 
 FROM ${JITSI_REPO}/base as builder
 
-RUN \
+RUN set -x && \
     apt-dpkg-wrap apt-get update \
     && apt-dpkg-wrap apt-get install -y \
       lua5.2 \
@@ -21,7 +21,7 @@ FROM ${JITSI_REPO}/base
 
 ADD https://prosody.im/files/prosody-debian-packages.key /tmp/prosody.key
 
-RUN \
+RUN set -x && \
     apt-key add /tmp/prosody.key \
     && rm -f /tmp/prosody.key \
     && echo "deb http://packages.prosody.im/debian stretch main" > /etc/apt/sources.list.d/prosody.list \
@@ -39,7 +39,7 @@ RUN \
     && apt-cleanup \
     && rm -rf /etc/prosody
 
-RUN \
+RUN set -x && \
     apt-dpkg-wrap apt-get update \
     && apt-dpkg-wrap apt-get -d install -y jitsi-meet-prosody \
     && dpkg -x /var/cache/apt/archives/jitsi-meet-prosody*.deb /tmp/pkg \
