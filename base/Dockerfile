@@ -4,6 +4,10 @@ ARG JITSI_RELEASE=stable
 
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
+# todo delete
+RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list \
+    && sed -i 's/security.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
+
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-amd64.tar.gz /tmp/s6-overlay.tar.gz
 ADD https://download.jitsi.org/jitsi-key.gpg.key /tmp/jitsi.key
 ADD https://github.com/subchen/frep/releases/download/v1.3.5/frep-1.3.5-linux-amd64 /usr/bin/frep

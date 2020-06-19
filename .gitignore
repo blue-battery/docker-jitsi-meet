@@ -4,7 +4,6 @@
 docker-compose.override.yml
 .idea
 
-/web/jitsi-meet
 
 */*.swp
 */.*.tmp
