@@ -21,10 +21,10 @@ RUN set -x && \
 	|| true
 
 RUN set -x && \
-    [ "${CHROME_RELEASE}" != "latest" ] \
-    && curl -4so /tmp/google-chrome-stable_${CHROME_RELEASE}-1_amd64.deb http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_RELEASE}-1_amd64.deb \
+        [ "${CHROME_RELEASE}" != "latest" ] \
+        && curl -4so /tmp/google-chrome-stable_${CHROME_RELEASE}-1_amd64.deb http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_RELEASE}-1_amd64.deb \
 	&& apt-dpkg-wrap apt-get update \
-    && apt-dpkg-wrap apt-get install -y /tmp/google-chrome-stable_${CHROME_RELEASE}-1_amd64.deb \
+        && apt-dpkg-wrap apt-get install -y /tmp/google-chrome-stable_${CHROME_RELEASE}-1_amd64.deb \
 	&& apt-cleanup \
 	|| true
 
@@ -38,9 +38,9 @@ RUN set -x && \
 	&& chromedriver --version
 
 RUN set -x && \
-    apt-dpkg-wrap apt-get update \
-    && apt-dpkg-wrap apt-get install -y jitsi-upload-integrations jq \
-    && apt-cleanup
+        apt-dpkg-wrap apt-get update \
+        && apt-dpkg-wrap apt-get install -y jitsi-upload-integrations jq \
+        && apt-cleanup
 
 COPY rootfs/ /
 
