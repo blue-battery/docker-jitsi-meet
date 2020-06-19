@@ -5,8 +5,19 @@ ARG JITSI_RELEASE=stable
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 # todo delete
-RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list \
-    && sed -i 's/security.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
+RUN set -x && \
+    cat > /etc/apt/sources.list << EOF \
+    deb http://mirrors.aliyun.com/debian/ stretch main non-free contrib \
+    deb-src http://mirrors.aliyun.com/debian/ stretch main non-free contrib \
+    deb http://mirrors.aliyun.com/debian-security stretch/updates main \
+    deb-src http://mirrors.aliyun.com/debian-security stretch/updates main \
+    deb http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib \
+    deb-src http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib \
+    deb http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib \
+    deb-src http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib EOF
+
+RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
+
 
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-amd64.tar.gz /tmp/s6-overlay.tar.gz
 ADD https://download.jitsi.org/jitsi-key.gpg.key /tmp/jitsi.key
