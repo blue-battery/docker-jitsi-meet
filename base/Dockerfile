@@ -6,7 +6,16 @@ ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 # todo delete
 RUN set -x && \
-    cat > /etc/apt/sources.list << EOF deb http://mirrors.aliyun.com/debian/ stretch main non-free contrib deb-src http://mirrors.aliyun.com/debian/ stretch main non-free contrib deb http://mirrors.aliyun.com/debian-security stretch/updates main deb-src http://mirrors.aliyun.com/debian-security stretch/updates main deb http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib deb-src http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib deb http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib deb-src http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib EOF
+    mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
+    echo 'deb http://mirrors.aliyun.com/debian/ stretch main non-free contrib' >/etc/apt/sources.list && \
+    echo 'deb-src http://mirrors.aliyun.com/debian/ stretch main non-free contrib' >>/etc/apt/sources.list && \
+    echo 'deb http://mirrors.aliyun.com/debian-security stretch/updates main' >>/etc/apt/sources.list && \
+    echo 'deb-src http://mirrors.aliyun.com/debian-security stretch/updates main' >>/etc/apt/sources.list && \
+    echo 'deb http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib' >>/etc/apt/sources.list && \
+    echo 'deb-src http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib' >>/etc/apt/sources.list && \
+    echo 'deb http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib' >>/etc/apt/sources.list && \
+    echo 'deb-src http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib' >>/etc/apt/sources.list
+
 
 RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
 
