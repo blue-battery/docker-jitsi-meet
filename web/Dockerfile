@@ -36,9 +36,9 @@ RUN set -x && \
 
 RUN set -x && \
     cd /usr/share/jitsi-meet && ls && \
-    rm -rf package-lock.json && \
-    npm cache clean --force && rm -rf node_modules/ && \
-    npm update --save && \
+#    rm -rf package-lock.json && \
+#    npm cache clean --force && rm -rf node_modules/ && \
+#    npm update --save && \
     npm install  && \
     make
 
