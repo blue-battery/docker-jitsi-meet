@@ -37,9 +37,9 @@ RUN set -x && \
 RUN set -x && \
     cd /usr/share/jitsi-meet && ls && \
     #npm install --loglevel silly
-    node --max_old_space_size=32768 && \
+    node --max_old_space_size=524288 && \
     npm install --verbose && \
-    npm npm update && \
+    npm update && \
     make
 
 
