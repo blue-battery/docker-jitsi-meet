@@ -35,10 +35,11 @@ RUN set -x && \
     rm -rf /var/cache/apt
 
 RUN set -x && \
-    cd /usr/share/jitsi-meet && ls && \
-    #npm install --loglevel silly
+    cd /usr/share/jitsi-meet && \
     node --max_old_space_size=524288 && \
-    npm install --verbose && \
+    # silly info verbose
+    npm install --loglevel info && \
+#    npm install --verbose && \
     npm update && \
     make
 
