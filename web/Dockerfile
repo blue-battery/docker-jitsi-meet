@@ -36,7 +36,7 @@ RUN set -x && \
 
 RUN set -x && \
     cd /usr/share/jitsi-meet && \
-    NODE_OPTIONS="--max-old-space-size=1024" && \
+    NODE_OPTIONS="--max-old-space-size=512" && \
     # silly debug verbose info warn error
     npm install --loglevel warn --save-dev && \
 #    npm install --verbose && \
