@@ -3,5 +3,3 @@
 
 docker-compose.override.yml
 .idea
-web/jitsi-meet/
-.jitsi-meet-cfg

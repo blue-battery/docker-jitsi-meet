@@ -3,7 +3,7 @@ FROM ${JITSI_REPO}/base-java
 
 ENV GOOGLE_APPLICATION_CREDENTIALS /config/key.json
 
-RUN \
+RUN set -x && \
 	apt-dpkg-wrap apt-get update && \
 	apt-dpkg-wrap apt-get install -y jigasi jq && \
 	apt-cleanup

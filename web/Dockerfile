@@ -9,7 +9,7 @@ ADD https://dl.eff.org/certbot-auto /usr/local/bin/
 
 COPY rootfs/ /
 
-#RUN \
+#RUN set -x && \
 #	apt-dpkg-wrap apt-get update && \
 #	apt-dpkg-wrap apt-get install -y cron nginx-extras jitsi-meet-web && \
 #	apt-dpkg-wrap apt-get -d install -y jitsi-meet-web-config && \

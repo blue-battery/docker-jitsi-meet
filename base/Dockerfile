@@ -10,7 +10,7 @@ ADD https://github.com/subchen/frep/releases/download/v1.3.5/frep-1.3.5-linux-am
 
 COPY rootfs /
 
-RUN \
+RUN set -x && \
 	tar xfz /tmp/s6-overlay.tar.gz -C / && \
 	rm -f /tmp/*.tar.gz && \
 	apt-dpkg-wrap apt-get update && \
@@ -24,7 +24,7 @@ RUN \
 	apt-cleanup && \
 	chmod +x /usr/bin/frep
 
-RUN \
+RUN set -x && \
 	[ "$JITSI_RELEASE" = "unstable" ] && \
 	apt-dpkg-wrap apt-get update && \
 	apt-dpkg-wrap apt-get install -y jq procps curl vim iputils-ping net-tools && \
