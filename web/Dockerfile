@@ -7,6 +7,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 ADD https://dl.eff.org/certbot-auto /usr/local/bin/
 
+RUN set -x && \
+	chmod a+x /usr/local/bin/certbot-auto && \
+	certbot-auto --noninteractive --install-only
+
 COPY rootfs/ /
 
 #RUN set -x && \
@@ -30,17 +34,15 @@ RUN set -x && \
     node -v && npm -v && \
     rm -rf /var/cache/apt
 
-#RUN set -x && \
-#    cd /usr/share/jitsi-meet && ls && \
-#    rm -rf package-lock.json && \
-#    npm cache clean --force && rm -rf node_modules/ && \
-#    npm update --save && \
-#    npm install  && \
-#    make
-
 RUN set -x && \
-	chmod a+x /usr/local/bin/certbot-auto && \
-	certbot-auto --noninteractive --install-only
+    cd /usr/share/jitsi-meet && ls && \
+    rm -rf package-lock.json && \
+    npm cache clean --force && rm -rf node_modules/ && \
+    npm update --save && \
+    npm install  && \
+    make
+
+
 
 EXPOSE 80 443
 
