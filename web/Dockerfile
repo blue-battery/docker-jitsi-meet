@@ -1,5 +1,9 @@
 ARG JITSI_REPO=jitsi
 FROM ${JITSI_REPO}/base
+#FROM node:10.17.0-stretch-slim
+#FROM debian:10.4-slim
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 ADD https://dl.eff.org/certbot-auto /usr/local/bin/
 
@@ -16,14 +20,25 @@ COPY rootfs/ /
 #	rm -f /etc/nginx/conf.d/default.conf && \
 #	rm -rf /tmp/pkg /var/cache/apt
 
-RUN \
-    cd /srv  && \
-    git clone https://github.com/jitsi/jitsi-meet.git  && \
-    cd jitsi-meet  && \
-    npm install  && \
-    make
 
-RUN \
+COPY jitsi-meet/ /usr/share/jitsi-meet/
+RUN set -x && \
+    apt-dpkg-wrap apt-get update && \
+    apt-get install -y curl dirmngr apt-transport-https lsb-release ca-certificates sudo cron nginx-extras && \
+    curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && \
+    apt-get install -y nodejs gcc g++ make && \
+    node -v && npm -v && \
+    rm -rf /var/cache/apt
+
+#RUN set -x && \
+#    cd /usr/share/jitsi-meet && ls && \
+#    rm -rf package-lock.json && \
+#    npm cache clean --force && rm -rf node_modules/ && \
+#    npm update --save && \
+#    npm install  && \
+#    make
+
+RUN set -x && \
 	chmod a+x /usr/local/bin/certbot-auto && \
 	certbot-auto --noninteractive --install-only
 
