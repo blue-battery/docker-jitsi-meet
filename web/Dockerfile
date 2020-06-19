@@ -36,7 +36,8 @@ RUN set -x && \
 
 RUN set -x && \
     cd /usr/share/jitsi-meet && ls && \
-    npm install --verbose && \
+    npm install --verbose && \ #npm install --loglevel silly
+    npm npm update && \
     make
 
 
