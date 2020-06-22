@@ -28,9 +28,9 @@ COPY rootfs/ /
 COPY jitsi-meet/ /usr/share/jitsi-meet/
 RUN set -x && \
     apt-dpkg-wrap apt-get update && \
-    apt-get install -y curl dirmngr apt-transport-https lsb-release ca-certificates sudo cron nginx-extras git  && \
+    apt-get install -y curl dirmngr apt-transport-https lsb-release ca-certificates sudo cron nginx-extras git && \
     curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && \
-    apt-get install -y nodejs gcc g++ make httpie && \
+    apt-get install -y nodejs gcc g++ make && \
     node -v && npm -v && \
     rm -rf /var/cache/apt
 
